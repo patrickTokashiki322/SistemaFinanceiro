@@ -12,7 +12,7 @@ namespace SistemaFinanceiro.Classes.ContaBancaria
     public class GerenciadorBancario
     {
         DespesasRepositorio repositorio = new DespesasRepositorio();
-        FormulariosDespesas formularioDespesa = new FormulariosDespesas();
+        Formularios formularioDespesa = new Formularios();
         Tela.Tela tela = new Tela.Tela();
 
         public void AtualizarStatusDespesas()
@@ -47,9 +47,9 @@ namespace SistemaFinanceiro.Classes.ContaBancaria
 
         public void AdicionarDespesa()
         {
-            var formularioNovaDespesa = new FormulariosDespesas();
+            var formularioNovaDespesa = new Formularios();
 
-            var despesa = formularioNovaDespesa.SolicitarNovaDespesa(repositorio);
+            var despesa = formularioNovaDespesa.SolicitarNovaDespesa();
 
             if (repositorio.ExisteDespesa(despesa.id))
             {
@@ -73,7 +73,9 @@ namespace SistemaFinanceiro.Classes.ContaBancaria
 
         public void PagarDespesa(ContaBancaria contaBancaria)
         {
-            int idDespesa = formularioDespesa.SolicitarDespesa();
+            repositorio.ListarDespesas();
+
+            int idDespesa = formularioDespesa.SolicitarDespesaExistente();
 
             bool despesaExistente = repositorio.ExisteDespesa(idDespesa);
 

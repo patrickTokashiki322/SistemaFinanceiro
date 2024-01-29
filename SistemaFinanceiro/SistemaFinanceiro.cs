@@ -32,36 +32,37 @@ namespace SistemaFinanceiro
                 Console.WriteLine("3 - Adicionar conta a pagar");
                 Console.WriteLine("4 - Listar contas pendentes");
                 Console.WriteLine("5 - Pagar conta");
-                Console.WriteLine("0 - Sair");
+                Console.WriteLine("Insira qualquer outro número para sair");
 
                 int operacao = Convert.ToInt16(Console.ReadLine());
 
                 Console.Clear();
 
-                if (operacao == 1)
+                switch (operacao)
                 {
-                    gerenciadorBancario.AdicionarValorSaldo(contaBancaria);
-                }
-                else if (operacao == 2)
-                {
-                    gerenciadorBancario.DescontarValorSaldo(contaBancaria);
-                }
-                else if (operacao == 3)
-                {
-                    gerenciadorBancario.AdicionarDespesa();
-                }
-                else if (operacao == 4)
-                {
-                    gerenciadorBancario.ListarDespesas();
-                }
-                else if (operacao == 5)
-                {
-                    gerenciadorBancario.PagarDespesa(contaBancaria);
-                }
-                else if (operacao == 0)
-                {
-                    Console.WriteLine("Até logo!");
-                    break;
+                    case 1:
+                        gerenciadorBancario.AdicionarValorSaldo(contaBancaria);
+                        break;
+
+                    case 2:
+                        gerenciadorBancario.DescontarValorSaldo(contaBancaria);
+                        break;
+
+                    case 3:
+                        gerenciadorBancario.AdicionarDespesa();
+                        break;
+
+                    case 4:
+                        gerenciadorBancario.ListarDespesas();
+                        break;
+
+                    case 5:
+                        gerenciadorBancario.PagarDespesa(contaBancaria);
+                        break;
+
+                    default:
+                        Console.WriteLine("Até logo!");
+                        return;
                 }
             }           
         }

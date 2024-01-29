@@ -11,10 +11,10 @@ using System.Threading.Tasks;
 
 namespace SistemaFinanceiro.Classes.Formulario
 {
-    internal class FormulariosDespesas
+    internal class Formularios
     {
 
-        public Despesa SolicitarNovaDespesa(DespesasRepositorio repositorio)
+        public Despesa SolicitarNovaDespesa()
         {
             Console.WriteLine("Informe o id da conta:");
             int id = Convert.ToInt16(Console.ReadLine());
@@ -35,7 +35,7 @@ namespace SistemaFinanceiro.Classes.Formulario
             return new Despesa(id, valor, dataDeVencimento, descricao);
         }
 
-        public int SolicitarDespesa()
+        public int SolicitarDespesaExistente()
         {
             Console.WriteLine("Informe o ID da conta a pagar:");
             int id = Convert.ToInt32(Console.ReadLine());
