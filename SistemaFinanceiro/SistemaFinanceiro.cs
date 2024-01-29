@@ -1,11 +1,17 @@
 ﻿using SistemaFinanceiro.Classes;
+using SistemaFinanceiro.Classes.ContaBancaria;
 
 namespace SistemaFinanceiro
 {
-    internal class Program
+    internal class SistemaFinanceiro
     {
         static void Main(string[] args)
         {
+            GerenciadorBancario gerenciadorBancario = new GerenciadorBancario();
+            ContaBancaria contaBancaria = new ContaBancaria();
+
+            gerenciadorBancario.AtualizarStatusDespesas();
+
             while (true)
             {
                 Console.WriteLine(@"
@@ -18,7 +24,7 @@ namespace SistemaFinanceiro
 ");
 
                 Console.WriteLine("Olá Patrick!\n");
-                Console.WriteLine($"Saldo: {ContaBancaria.saldo}\n");
+                Console.WriteLine($"Saldo: {contaBancaria.saldo}\n");
 
                 Console.WriteLine("Selecione a operação desejada:");
                 Console.WriteLine("1 - Depositar valores");
@@ -26,7 +32,7 @@ namespace SistemaFinanceiro
                 Console.WriteLine("3 - Adicionar conta a pagar");
                 Console.WriteLine("4 - Listar contas pendentes");
                 Console.WriteLine("5 - Pagar conta");
-                Console.WriteLine("Insira qualquer outro número para sair");
+                Console.WriteLine("0 - Sair");
 
                 int operacao = Convert.ToInt16(Console.ReadLine());
 
@@ -34,25 +40,25 @@ namespace SistemaFinanceiro
 
                 if (operacao == 1)
                 {
-                    Operacoes.adicionarValorSaldo();
+                    gerenciadorBancario.AdicionarValorSaldo(contaBancaria);
                 }
                 else if (operacao == 2)
                 {
-                    Operacoes.descontarValorSaldo();
+                    gerenciadorBancario.DescontarValorSaldo(contaBancaria);
                 }
                 else if (operacao == 3)
                 {
-                    Despesas.adicionarConta();
+                    gerenciadorBancario.AdicionarDespesa();
                 }
                 else if (operacao == 4)
                 {
-                    Despesas.listarContas();
+                    gerenciadorBancario.ListarDespesas();
                 }
                 else if (operacao == 5)
                 {
-                    Despesas.pagarConta();
+                    gerenciadorBancario.PagarDespesa(contaBancaria);
                 }
-                else
+                else if (operacao == 0)
                 {
                     Console.WriteLine("Até logo!");
                     break;
